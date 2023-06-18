@@ -1,0 +1,134 @@
+    body {
+      background-color: #070e1d;
+      color: #f9fafb;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .form-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      width: 70vw;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .form-container input[type="text"] {
+      flex: 1;
+      height: 26px;
+      font-size: 14px;
+      margin-bottom: 2px;
+      background-color: #01014f;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 0px;
+      color: #fff;
+    }
+
+    .form-container .orange-button {
+      flex-shrink: 0;
+      background-color: #f89430;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-left: 8px;
+      margin-right: 0px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container .orange-button:hover {
+      background-color: #e97d1d;
+    }
+
+    .form-container .orange-button.clicked {
+      transform: scale(1.1);
+      background-color: #ffae42;
+    }
+
+    table {
+      border: 3px solid #26292c;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 18px;
+      margin: 4px auto;
+      background-color: #0c0f1e;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    th {
+      background-color: #101d39;
+      color: #f9fafb;
+      font-size: 18px;
+      padding: 8px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    td {
+      font-size: 16px;
+      padding: 8px;
+      vertical-align: middle;
+    }
+
+    td:first-child {
+      max-width: 40%;
+      word-break: break-all;
+      padding: 0px;
+      font-size: 16px;
+    }
+
+    td:nth-child(2) a {
+      color: #6e8ebe;
+      text-decoration: none;
+      transition: color 0.3s;
+      padding: 0px;
+      font-size: 14px;
+    }
+
+    td:nth-child(2) a:hover {
+      color: #ffd700;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid #26292c;
+    }
+
+    .delete-logo {
+      width: 20px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .red-text {
+      color: red;
+    }
+
+    @media (orientation: landscape) {
+      table {
+        width: 90vw;
+        max-width: 90%;
+      }
+
+      .form-container {
+        width: 70vw;
+        max-width: 90%;
+      }
+    }
+
+    @media (orientation: portrait) {
+      table {
+        width: 100vw;
+        max-width: 100%;
+      }
+
+      .form-container {
+        width: 100vw;
+        max-width: 100%;
+      }
+    }
