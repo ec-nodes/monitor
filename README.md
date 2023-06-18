@@ -8,5 +8,3 @@ To access this page, create a shortcut on your desktop or home screen for https:
 To optimize the design and performance of the page and application, please send your suggestions to ec.node.monitor@gmail.com.
 
 Note: The webpage uses local storage to save node information in cookies, so the data will be kept until you delete or uninstall the browser, even if it is closed or refreshed. Installing the Android app helps to save the node list when uninstalling or clearing the browser memory (the app uses "Android WebView").
-
-![Nodes Monitor](https://github.com/ec-nodes/monitor/assets/134415308/636ecada-1f91-4cee-b1a3-28f09f935a4f)
