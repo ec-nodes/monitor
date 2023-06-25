@@ -78,6 +78,7 @@
     td:first-child {
       max-width: 40%;
       word-break: break-word;
+      white-space: pre-wrap;
       padding: 0px;
       font-size: 16px;
     }
