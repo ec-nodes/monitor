@@ -132,21 +132,6 @@
       });
     });
 
-function downloadBackup() {
-  const nodes = JSON.parse(localStorage.getItem('nodes')) || [];
-  let backupContent = '';
-  nodes.forEach((node) => {
-    backupContent += `{NodeName: ${JSON.stringify(node.nodeName)}, NodeAddress: ${JSON.stringify(node.nodeAddress)}},\n`;
-  });
-
-  const blob = new Blob([backupContent], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'nodes_backup.txt';
-  link.click();
-}
-
 function downloadBackupJSON() {
   const nodes = JSON.parse(localStorage.getItem('nodes')) || [];
   const backupData = JSON.stringify(nodes, null, 2);
@@ -165,25 +150,21 @@ function restoreBackup() {
   const input = document.createElement('input');
   input.type = 'file';
   input.accept = '.json';
-  input.addEventListener('change', (event) => {
+  input.addEventListener('change', async (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const contents = e.target.result;
-      try {
-        const nodes = JSON.parse(contents);
-        if (Array.isArray(nodes)) {
-          localStorage.setItem('nodes', JSON.stringify(nodes));
-          location.reload();
-        } else {
-          throw new Error('Invalid backup file format.');
-        }
-      } catch (error) {
-        console.log('Error parsing backup file:', error);
-        alert('Error parsing backup file. Please make sure the file is in the correct format.');
+    const contents = await file.text();
+    try {
+      const nodes = JSON.parse(contents);
+      if (Array.isArray(nodes)) {
+        localStorage.setItem('nodes', JSON.stringify(nodes));
+        location.reload();
+      } else {
+        throw new Error('Invalid backup file format.');
       }
-    };
-    reader.readAsText(file);
+    } catch (error) {
+      console.log('Error parsing backup file:', error);
+      alert('Error parsing backup file. Please make sure the file is in the correct format.');
+    }
   });
   input.click();
 }
