@@ -137,7 +137,7 @@ function downloadBackupJSON() {
 
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'nodes_backup.json';
+  link.download = 'Nodes_Backup.json';
   link.click();
 
   URL.revokeObjectURL(url);
