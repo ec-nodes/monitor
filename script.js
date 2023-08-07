@@ -20,9 +20,9 @@ function addNodeToTable(nodeName, nodeAddress, transactionTime) {
   const table = document.getElementById('myTable');
   const newRow = table.insertRow();
   const newNodeAddressText = generateNewNodeAddressText(nodeAddress);
-  
+
   const transactionTimeText = typeof transactionTime === 'number' ? `${transactionTime} h` : transactionTime;
-  
+
   newRow.innerHTML = `<td>${nodeName}</td><td><a href="https://blockexplorer.bloxberg.org/address/${nodeAddress}">${newNodeAddressText}</a></td><td>${transactionTimeText}</td><td><img src="https://i.ibb.co/xHbVTPk/delete-3.webp" alt="Delete" class="delete-logo"></td>`;
   const deleteLogo = newRow.querySelector('.delete-logo');
   deleteLogo.addEventListener('click', () => {
@@ -73,10 +73,11 @@ function addNodeToDatabase(nodeName, nodeAddress) {
   localStorage.setItem('nodes', JSON.stringify(nodes));
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+const existingAddresses = new Set();
+
+async function loadNodesData() {
   const storedNodes = JSON.parse(localStorage.getItem('nodes')) || [];
   const table = document.getElementById('myTable');
-  const existingAddresses = new Set();
 
   const addresses = Array.from(table.querySelectorAll('td:nth-child(2) a'));
   addresses.forEach(address => {
@@ -91,10 +92,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       addNodeToTable(nodeName, nodeAddress, lastTransactionTime || 'Last Hour');
       existingAddresses.add(nodeAddress);
     });
+
   table.style.display = 'table';
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadNodesData(); // Load nodes data when the page is loaded
 
   const addNodeBtn = document.getElementById('add-node');
-
   addNodeBtn.addEventListener('click', async () => {
     const nodeName = document.getElementById('node-name').value;
     const nodeAddress = document.getElementById('node-address').value;
