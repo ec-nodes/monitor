@@ -117,7 +117,7 @@ async function loadNodesData() {
           stopProgressAnimation(progressInterval);
         }, 2000);
 
-        if (typeof response.lastTransactionTime === 'number' && response.lastTransactionTime > 24) {
+        if (typeof response.lastTransactionTime === 'number' && response.lastTransactionTime > 17) {
           row.classList.add('red-text');
         }
       }
