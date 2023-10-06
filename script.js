@@ -1,3 +1,17 @@
+function startProgressAnimation(cell) {
+  let progress = 1;
+  const progressText = [".", "..", "..."];
+  const progressInterval = setInterval(() => {
+    cell.textContent = progressText[progress % 4];
+    progress++;
+  }, 400);
+  return progressInterval;
+}
+
+function stopProgressAnimation(progressInterval) {
+  clearInterval(progressInterval);
+}
+
 async function fetchTransactions(node) {
   try {
     const response = await fetch(`https://blockexplorer.bloxberg.org/api?module=account&action=txlist&address=${node.nodeAddress}`);
@@ -32,7 +46,7 @@ function addNodeToTable(nodeName, nodeAddress, transactionTime) {
       deleteNodeFromStorage(nodeAddress);
     }
   });
-  if (typeof transactionTime === 'number' && transactionTime > 14) {
+  if (typeof transactionTime === 'number' && transactionTime > 17) {
     newRow.classList.add('red-text');
   }
 }
@@ -79,25 +93,42 @@ async function loadNodesData() {
   const storedNodes = JSON.parse(localStorage.getItem('nodes')) || [];
   const table = document.getElementById('myTable');
 
-  const addresses = Array.from(table.querySelectorAll('td:nth-child(2) a'));
-  addresses.forEach(address => {
-    existingAddresses.add(address.textContent);
-  });
-
-  const nodeDataArray = await Promise.all(storedNodes.map(fetchTransactions));
-  nodeDataArray
-    .filter(Boolean)
-    .forEach(({ nodeName, nodeAddress, lastTransactionTime }) => {
-      const newNodeAddressText = generateNewNodeAddressText(nodeAddress);
-      addNodeToTable(nodeName, nodeAddress, lastTransactionTime || 'Last Hour');
-      existingAddresses.add(nodeAddress);
-    });
+  existingAddresses.clear();
 
   table.style.display = 'table';
+
+  storedNodes.forEach(({ nodeName, nodeAddress }) => {
+    const newNodeAddressText = generateNewNodeAddressText(nodeAddress);
+    addNodeToTable(nodeName, nodeAddress, '....');
+    existingAddresses.add(nodeAddress);
+  });
+
+  await Promise.all(storedNodes.map(async ({ nodeName, nodeAddress }) => {
+    try {
+      const response = await fetchTransactions({ nodeName, nodeAddress });
+      if (response) {
+        const newNodeAddressText = generateNewNodeAddressText(nodeAddress);
+        const row = table.querySelector(`tr td:nth-child(2) a[href="https://blockexplorer.bloxberg.org/address/${nodeAddress}"]`).parentNode.parentNode;
+        const cell = row.cells[2];
+        const progressInterval = startProgressAnimation(cell);
+
+        setTimeout(() => {
+          cell.textContent = response.lastTransactionTime || 'Last Hour';
+          stopProgressAnimation(progressInterval);
+        }, 2000);
+
+        if (typeof response.lastTransactionTime === 'number' && response.lastTransactionTime > 24) {
+          row.classList.add('red-text');
+        }
+      }
+    } catch (error) {
+      console.error(`Error fetching data for ${nodeAddress}: ${error}`);
+    }
+  }));
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadNodesData(); // Load nodes data when the page is loaded
+  await loadNodesData();
 
   const addNodeBtn = document.getElementById('add-node');
   addNodeBtn.addEventListener('click', async () => {
