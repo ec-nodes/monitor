@@ -62,7 +62,7 @@ async function updateCellWithTransactionTime() {
                 newRow.classList.add('red-text');
             }
         } else {
-            cell.textContent = 'No Response';
+            cell.textContent = 'Retrying';
             stopProgressAnimation(progressInterval);
 
             await new Promise((resolve) => setTimeout(resolve, 1000));
