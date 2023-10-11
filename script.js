@@ -66,7 +66,7 @@ function addNodeToTable(nodeName, nodeAddress, transactionTime) {
         const response = await fetchTransactions({ nodeName, nodeAddress });
 
         if (!response) {
-            await new Promise((resolve) => setTimeout(resolve, 4000));
+            await new Promise((resolve) => setTimeout(resolve, 2500));
             const retryResponse = await fetchTransactions({ nodeName, nodeAddress });
             if (retryResponse) {
                 cell.textContent = retryResponse.lastTransactionTime || 'Last Hour';
@@ -78,7 +78,7 @@ function addNodeToTable(nodeName, nodeAddress, transactionTime) {
                 cell.textContent = 'Retrying';
                 stopProgressAnimation(progressInterval);
 
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 2500));
                 const secondRetryResponse = await fetchTransactions({ nodeName, nodeAddress });
                 if (secondRetryResponse) {
                     cell.textContent = secondRetryResponse.lastTransactionTime || 'Last Hour';
@@ -167,7 +167,7 @@ async function loadNodesData() {
                 setTimeout(() => {
                     cell.textContent = response.lastTransactionTime || 'Last Hour';
                     stopProgressAnimation(progressInterval);
-                }, 2000);
+                }, 1000);
 
                 if (typeof response.lastTransactionTime === 'number' && response.lastTransactionTime > 17) {
                     row.classList.add('red-text');
