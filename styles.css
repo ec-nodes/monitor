@@ -151,3 +151,13 @@ tr:not(:last-child) {
 #myTable tr:hover {
   background-color: #0f1b36;
 }
+
+.coinmarketcap-currency-widget div[style*="padding:8px 0;"] {
+  display: none !important;
+}
+
+.widget-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
