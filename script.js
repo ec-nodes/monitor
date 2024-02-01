@@ -63,7 +63,7 @@ function addNodeToTable(nodeName, nodeAddress, transactionTime) {
 
     const transactionTimeText = typeof transactionTime === 'number' ? `${transactionTime} h` : transactionTime;
 
-    newRow.innerHTML = `<td class="node-name">${nodeName}</td><td class="node-address"><a href="https://blockexplorer.bloxberg.org/address/${nodeAddress}">${newNodeAddressText}</a></td><td>${transactionTimeText}</td><td><img src="https://i.ibb.co/xHbVTPk/delete-3.webp" alt="Delete" class="delete-logo"></td>`;
+newRow.innerHTML = `<td class="node-name">${nodeName}</td><td class="node-address"><a href="https://blockexplorer.bloxberg.org/address/${nodeAddress}" target="_blank">${newNodeAddressText}</a></td><td>${transactionTimeText}</td><td><img src="https://i.ibb.co/xHbVTPk/delete-3.webp" alt="Delete" class="delete-logo"></td>`;
     const deleteLogo = newRow.querySelector('.delete-logo');
     deleteLogo.addEventListener('click', () => {
         const confirmation = confirm("Please confirm this action!");
