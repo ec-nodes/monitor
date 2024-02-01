@@ -338,3 +338,20 @@ downloadBackupBtn.addEventListener('click', downloadBackupJSON);
 
 const restoreBackupBtn = document.getElementById('restore-backup');
 restoreBackupBtn.addEventListener('click', restoreBackup);
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var titleElement = document.querySelector('title');
+    var ethernityCloudWidget = document.querySelector('.coinmarketcap-currency-widget');
+
+  ethernityCloudWidget.addEventListener("click", function() {
+  window.open("https://ethernity.cloud/", "_blank");
+  });
+
+    setInterval(updateTokenPrice, 10000);
+
+    function updateTokenPrice() {
+      var priceElement = document.querySelector('.coinmarketcap-currency-widget span[style="font-size: 20px; font-weight: 500;"]');
+      var tokenPrice = parseFloat(priceElement.innerText.trim());
+      titleElement.innerText = "ECLD $" + tokenPrice.toFixed(6) + " USD";
+    }
+  });
