@@ -135,24 +135,21 @@ tr:not(:last-child) {
 }
 
 @media (orientation: landscape) {
-  table {
-    width: 90vw;
-    max-width: 90%;
+  table, .form-container {
+    width: 80vw;
+    max-width: 80%;
   }
 
-  .form-container {
-    width: 70vw;
-    max-width: 90%;
+  .widget-container {
+    width: 25vw;
+    max-width: 25%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 @media (orientation: portrait) {
-  table {
-    width: 100vw;
-    max-width: 100%;
-  }
-
-  .form-container {
+  table, .form-container, .widget-container {
     width: 100vw;
     max-width: 100%;
   }
