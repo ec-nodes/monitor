@@ -11,7 +11,8 @@ body {
   margin-bottom: 16px;
   width: 70vw;
   max-width: 80%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-container input[type="text"] {
@@ -33,7 +34,6 @@ body {
   border: none;
   padding: 10px 20px;
   margin-left: 8px;
-  margin-right: 0px;
   margin-bottom: 5px;
   cursor: pointer;
   font-size: 18px;
@@ -66,13 +66,23 @@ body {
 }
 
 table {
-  border: 3px solid #26292c;
-  border-collapse: collapse;
+  border: 3px solid #cfd2d4;
+  border-spacing: 0;
+  width: 100%;
   text-align: center;
   font-size: 18px;
   margin: 4px auto;
   background-color: #0c0f1e;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #26292c;
+  padding: 8px;
+  border-right: none;
+  border-left: none;
 }
 
 th {
@@ -154,10 +164,4 @@ tr:not(:last-child) {
 
 .coinmarketcap-currency-widget div[style*="padding:8px 0;"] {
   display: none !important;
-}
-
-.widget-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
