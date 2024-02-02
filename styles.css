@@ -162,3 +162,8 @@ tr:not(:last-child) {
 .coinmarketcap-currency-widget div[style*="padding:8px 0;"] {
   display: none !important;
 }
+
+.coinmarketcap-currency-widget div[style*="padding:8px 0;"] { display: none !important; }
+.coinmarketcap-currency-widget div { border: none !important; }
+.coinmarketcap-currency-widget a { font-size: 24px !important; }
+.coinmarketcap-currency-widget img { width: 60px !important; height: 60px !important; }
