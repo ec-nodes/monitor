@@ -1,204 +1,69 @@
-body {
-  background-color: #070e1d;
-  color: #f9fafb;
-  font-family: 'Arial', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECLD</title>
+  <link rel="shortcut icon" type="image/webp" href="https://i.ibb.co/sbkcrzr/shortcut.webp">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 
-.form-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  width: 70vw;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var titleElement = document.querySelector('title');
+      
+      setInterval(updateTokenPrice, 5000);
 
-.form-container input[type="text"] {
-  flex: 1;
-  height: 26px;
-  font-size: 14px;
-  margin-bottom: 2px;
-  background-color: #01014f;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 0px;
-  color: #fff;
-}
+      function updateTokenPrice() {
+        var priceElement = document.querySelector('.coinmarketcap-currency-widget span[style="font-size: 20px; font-weight: 500;"]');
+        var tokenPrice = parseFloat(priceElement.innerText.trim());
+        titleElement.innerText = "ECLD $" + tokenPrice.toFixed(6) + " USD";
+      }
+    });
+  </script>
 
-.form-container .orange-button,
-.backup-button,
-.restore-button {
-  flex-shrink: 0;
-  background-color: #f89430;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 6px;
-  transition: background-color 0.3s;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-}
+</head>
+<body>
+  <div class="widget-container">
+    <div class="coinmarketcap-currency-widget" style="width: 100%; height: 90px;" data-currencyid="11815" data-base="USD" data-secondary="" data-ticker="false" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="false" data-stats='{"USD": {"bycm": false}}'>
+    </div>
+  </div>
 
-.form-container .orange-button:hover,
-.backup-button:hover,
-.restore-button:hover {
-  background-color: #e97d1d;
-}
+  <div class="form-container">
+    <div>
+      <input type="text" id="node-name" placeholder="Node Name">
+      <input type="text" id="node-address" placeholder="Node Address">
+    </div>
+    <button type="button" id="add-node" class="orange-button">Add</button>
+  </div>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th style="width: 40%;">Name</th>
+        <th style="width: 39%;">Address</th>
+        <th style="width: 18%;">Last Call</th>
+        <th style="width: 3%;">Del</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-.form-container .orange-button.clicked,
-.backup-button.clicked,
-.restore-button.clicked {
-  transform: scale(1.1);
-  background-color: #ffae42;
-}
+<div class="form-container">
+  <button id="download-backup" class="large-button">Backup</button>
 
-.large-button {
-  flex-shrink: 0;
-  background-color: #f89430;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin-bottom: 2px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 6px;
-  transition: background-color 0.3s;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-}
+  <a href="https://staking.ethernity.cloud/staking" target="_blank" class="shortcut-button">
+    <img src="https://i.ibb.co/sbkcrzr/shortcut.webp" alt="Staking">
+    <span>Staking</span>
+  </a>
 
-table {
-  border: 3px solid #cfd2d4;
-  border-spacing: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  margin: 4px auto;
-  background-color: #0c0f1e;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  overflow: hidden;
-}
+  <a href="https://swap.ethernity.cloud/" target="_blank" class="shortcut-button">
+    <img src="https://i.ibb.co/b6RfhWZ/swap.png" alt="Swap">
+    <span>Swap</span>
+  </a>
 
-th, td {
-  border: 1px solid #26292c;
-  padding: 8px;
-  border-right: none;
-  border-left: none;
-}
+  <button id="restore-backup" class="large-button">Restore</button>
+</div>
 
-th {
-  background-color: #101d39;
-  color: #f9fafb;
-  font-size: 18px;
-  padding: 14px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-td {
-  font-size: 16px;
-  padding: 8px;
-  vertical-align: middle;
-}
-
-td:first-child {
-  max-width: 40%;
-  word-break: break-word;
-  white-space: pre-wrap;
-  padding: 0px;
-  font-size: 16px;
-}
-
-td:nth-child(2) a {
-  color: #6e8ebe;
-  text-decoration: none;
-  transition: color 0.3s;
-  padding: 0px;
-  font-size: 14px;
-}
-
-td:nth-child(2) a:hover {
-  color: #ffd700;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-tr:not(:last-child) {
-  border-bottom: 1px solid #26292c;
-}
-
-.delete-logo {
-  width: 20px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.red-text {
-  color: red;
-}
-
-@media (orientation: landscape) {
-  table, .form-container {
-    width: 80vw;
-    max-width: 80%;
-  }
-
-  .widget-container {
-    width: 25vw;
-    max-width: 25%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (orientation: portrait) {
-  table, .form-container, .widget-container {
-    width: 100vw;
-    max-width: 100%;
-  }
-}
-
-#myTable tr:hover {
-  background-color: #0f1b36;
-}
-
-.coinmarketcap-currency-widget div[style*="padding:8px 0;"] {
-  display: none !important;
-}
-
-.coinmarketcap-currency-widget div[style*="padding:8px 0;"] { display: none !important; }
-.coinmarketcap-currency-widget div { border: none !important; }
-.coinmarketcap-currency-widget a { font-size: 24px !important; }
-.coinmarketcap-currency-widget img { width: 60px !important; height: 60px !important; }
-
-
-.shortcut-button {
-  display: inline-block;
-  margin: 10px;
-  position: relative;
-}
-
-.shortcut-button img {
-  width: 50px;
-  height: auto;
-  border-radius: 10px;
-}
-
-.shortcut-button:after {
-  content: attr(alt);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-
-.shortcut-button img + span {
-  display: block;
-  text-align: center;
-  color: #fff;
-  font-size: 12px;
-  margin-top: 0px;
-}
+  <script src="script.js"></script>
+</body>
+</html>
