@@ -27,26 +27,31 @@ body {
   color: #fff;
 }
 
-.form-container .orange-button {
+.form-container .orange-button,
+.backup-button,
+.restore-button {
   flex-shrink: 0;
   background-color: #f89430;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin-left: 8px;
-  margin-bottom: 5px;
+  padding: 12px 24px;
+  margin: 10px;
   cursor: pointer;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: background-color 0.3s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.form-container .orange-button:hover {
+.form-container .orange-button:hover,
+.backup-button:hover,
+.restore-button:hover {
   background-color: #e97d1d;
 }
 
-.form-container .orange-button.clicked {
+.form-container .orange-button.clicked,
+.backup-button.clicked,
+.restore-button.clicked {
   transform: scale(1.1);
   background-color: #ffae42;
 }
@@ -56,11 +61,11 @@ body {
   background-color: #f89430;
   color: #fff;
   border: none;
-  padding: 8px 16px;
+  padding: 12px 16px;
   margin-bottom: 2px;
   cursor: pointer;
-  font-size: 14px;
-  border-radius: 2px;
+  font-size: 16px;
+  border-radius: 6px;
   transition: background-color 0.3s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -167,3 +172,33 @@ tr:not(:last-child) {
 .coinmarketcap-currency-widget div { border: none !important; }
 .coinmarketcap-currency-widget a { font-size: 24px !important; }
 .coinmarketcap-currency-widget img { width: 60px !important; height: 60px !important; }
+
+
+.shortcut-button {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+}
+
+.shortcut-button img {
+  width: 50px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.shortcut-button:after {
+  content: attr(alt);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.shortcut-button img + span {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  margin-top: 0px;
+}
