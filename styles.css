@@ -61,10 +61,10 @@ body {
   background-color: #f89430;
   color: #fff;
   border: none;
-  padding: 12px 16px;
+  padding: 10px 16px;
   margin-bottom: 2px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 6px;
   transition: background-color 0.3s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
