@@ -23,20 +23,8 @@
   </script>
 
   <!-- Plausible Analytics Snippet -->
-  <script>
-    var script = document.createElement('script');
-    script.defer = true;
-    script.dataset.domain = "ec-nodes-monitor.netlify.app";
-    script.dataset.api = "https://plausible.io/api/event";
-    script.src = "https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js";
-    document.getElementsByTagName('head')[0].appendChild(script);
-  </script>
-
-  <script>
-    window.plausible = window.plausible || function() { 
-      (window.plausible.q = window.plausible.q || []).push(arguments);
-    }
-  </script>
+  <script defer data-domain="ec-nodes.github.io/monitor" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
   <!-- End Plausible Analytics Snippet -->
 
 </head>
